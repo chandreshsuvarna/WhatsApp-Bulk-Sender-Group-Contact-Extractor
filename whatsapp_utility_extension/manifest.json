@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "WA Bulk Message Sender",
+  "version": "4.1.6",
+  "description": "Paste numbers or upload a CSV, merge fields into one message, attach a JPG/PDF and send automatically on WhatsApp Web.",
+  "permissions": ["storage", "tabs", "unlimitedStorage"],
+  "host_permissions": ["https://web.whatsapp.com/*"],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_title": "WA Bulk Message Sender" },
+  "content_scripts": [
+    { "matches": ["https://web.whatsapp.com/*"], "js": ["shared.js", "content.js"], "run_at": "document_idle" }
+  ]
+}

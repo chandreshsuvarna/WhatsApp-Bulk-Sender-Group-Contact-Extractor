@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<style>
+  body{width:360px;padding:16px;margin:0;font-family:-apple-system,"Segoe UI",Roboto,sans-serif;background:#f0f2f5}
+  h3{margin:0 0 8px;color:#075e54;font-size:17px}
+  label{font-size:12px;color:#54656f;display:block;margin:8px 0 4px;font-weight:600}
+  textarea,input{width:100%;box-sizing:border-box;border:1px solid #ccc;border-radius:6px;padding:7px;font-size:13px}
+  textarea{resize:vertical} #numbers{height:90px} #message{height:80px}
+  .row{display:flex;gap:8px}.row>div{flex:1}
+  button{border:none;padding:10px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:13px;color:#fff}
+  .btns{display:flex;gap:6px;margin-top:10px}.btns button{flex:1}
+  #startBtn{background:#25d366}#stopBtn{background:#e53935}#resetBtn{background:#78909c}
+  #dlBtn{width:100%;margin-top:6px;background:#075e54}
+  #status{margin-top:10px;font-size:12px;color:#075e54;text-align:center;font-weight:bold;min-height:16px}
+  .hint{font-size:11px;color:#667781;margin-top:4px}
+</style></head>
+<body>
+  <h3>WA Bulk Message Sender</h3>
+  <label for="numbers">Contacts (one per line)</label>
+  <textarea id="numbers" placeholder="919876543210,Rahul&#10;919812345678,Priya"></textarea>
+  <div class="hint">Country code + number, no + or spaces. Optional name after a comma.</div>
+  <label for="message">Message ({name} = contact name)</label>
+  <textarea id="message" placeholder="Hi {name}, ..."></textarea>
+  <div class="row">
+    <div><label>Min delay (sec)</label><input id="minDelay" type="number" min="5" value="20"></div>
+    <div><label>Max delay (sec)</label><input id="maxDelay" type="number" min="5" value="45"></div>
+    <div><label>Max per run</label><input id="maxRun" type="number" min="1" value="50"></div>
+  </div>
+  <div class="btns">
+    <button id="startBtn">Start / Resume</button>
+    <button id="stopBtn">Stop</button>
+    <button id="resetBtn">Reset</button>
+  </div>
+  <button id="dlBtn">Download report (CSV)</button>
+  <div id="status"></div>
+  <div class="hint">Keep the WhatsApp Web tab open and your computer awake while it runs. Only message people who have opted in.</div>
+  <script src="popup.js"></script>
+</body></html>
