@@ -1,6 +1,8 @@
 {
   "manifest_version": 3,
   "name": "WA Bulk Message Sender",
+  "author": "Chandresh Suvarna",
+  "description": "Developed by Chandresh Suvarna - Bulk WhatsApp messaging for Business Reminders",
   "version": "4.1.6",
   "description": "Paste numbers or upload a CSV, merge fields into one message, attach a JPG/PDF and send automatically on WhatsApp Web.",
   "permissions": ["storage", "tabs", "unlimitedStorage"],
