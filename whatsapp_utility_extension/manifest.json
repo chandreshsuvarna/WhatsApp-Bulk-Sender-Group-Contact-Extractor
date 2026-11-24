@@ -1,15 +1,34 @@
 {
   "manifest_version": 3,
-  "name": "WA Bulk Message Sender",
+  "name": "WA Bulk Sender + Contact Extractor",
   "author": "Chandresh Suvarna",
-  "description": "Developed by Chandresh Suvarna - Bulk WhatsApp messaging for Business Reminders",
-  "version": "4.1.6",
-  "description": "Paste numbers or upload a CSV, merge fields into one message, attach a JPG/PDF and send automatically on WhatsApp Web.",
-  "permissions": ["storage", "tabs", "unlimitedStorage"],
-  "host_permissions": ["https://web.whatsapp.com/*"],
-  "background": { "service_worker": "background.js" },
-  "action": { "default_title": "WA Bulk Message Sender" },
+  "version": "5.0.0",
+  "description": "Extract WhatsApp group contacts, then bulk-message them on WhatsApp Web with merge fields and attachments. Developed by Chandresh Suvarna.",
+  "permissions": [
+    "storage",
+    "tabs",
+    "unlimitedStorage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://web.whatsapp.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "WA Bulk Sender + Contact Extractor"
+  },
   "content_scripts": [
-    { "matches": ["https://web.whatsapp.com/*"], "js": ["shared.js", "content.js"], "run_at": "document_idle" }
+    {
+      "matches": [
+        "https://web.whatsapp.com/*"
+      ],
+      "js": [
+        "shared.js",
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
   ]
 }

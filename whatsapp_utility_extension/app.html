@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><title>WA Bulk Message Sender</title>
+<html lang="en"><head><meta charset="UTF-8"><title>WA Bulk Sender + Contact Extractor</title>
 <style>
   body{margin:0;background:#f0f2f5;font-family:-apple-system,"Segoe UI",Roboto,sans-serif;color:#111}
   .wrap{max-width:720px;margin:24px auto;padding:0 16px}
@@ -20,11 +20,30 @@
   .or{text-align:center;font-size:12px;color:#78909c;margin:10px 0 2px;font-weight:600}
   #numbers{height:110px}
   #preview{background:#dcf8c6;border-radius:8px;padding:10px;font-size:13px;white-space:pre-wrap;margin-top:8px;min-height:20px}
+
+  .tabs{display:flex;gap:8px;margin:14px 0 0}
+  .tabBtn{background:#d9dfe2;color:#33444d;flex:1}
+  .tabBtn.active{background:#075e54;color:#fff}
+  .tabPane[hidden]{display:none}
+  #exLoadGroups,#exScan,#exCsv,#exToSender{background:#075e54}#exXlsx{background:#236b50}
+  #exCsv:disabled,#exXlsx:disabled,#exToSender:disabled,#exScan:disabled,#exLoadGroups:disabled{opacity:.55;cursor:default}
+  #exToSender{background:#25d366;width:100%;margin-top:8px}
+  select{width:100%;box-sizing:border-box;border:1px solid #ccc;border-radius:6px;padding:8px;font-size:14px;font-family:inherit;background:#fff}
+  #exGroupFilter{width:100%;box-sizing:border-box;border:1px solid #ccc;border-radius:6px;padding:8px;font-size:14px;margin-bottom:6px}
+  #exStatus{font-size:12px;color:#40574c;margin:10px 0;min-height:16px;font-weight:600}
+  #exDetails{margin-top:10px;padding:10px;background:#f7faf9;border:1px solid #dce6e1;border-radius:8px}
+  #exGroupName{font-weight:700}#exCount{font-size:12px;color:#64756e;margin-top:2px}
+  #exPreview{max-height:200px;overflow:auto;margin:8px 0}
+  .contact{display:flex;justify-content:space-between;gap:8px;padding:5px 2px;border-bottom:1px solid #edf1ef;font-size:12px}
+  .contact span:last-child{white-space:nowrap}
 </style></head>
 <body><button id="stopFab">&#9632; STOP NOW</button>
 <div class="wrap">
-  <h1>WA Bulk Message Sender</h1>
+  <h1>WA Bulk Sender + Contact Extractor</h1>
   <div class="info">Paste or upload contacts, write one message, optionally attach a file, and it sends automatically on WhatsApp Web.</div>
+  <div class="tabs"><button class="tabBtn active" data-pane="paneSender">Bulk Sender</button><button class="tabBtn" data-pane="paneExtractor">Group Contact Extractor</button></div>
+  <div id="paneSender" class="tabPane">
+
 
   <div class="card"><h2>1. Contacts</h2>
     <label>Paste mobile numbers (one per line, or separated by commas)</label>
@@ -62,7 +81,31 @@
     <div id="status" style="margin-top:12px"></div>
     <div class="info">Keep the WhatsApp Web tab open and your computer awake. Only message people who have agreed to receive your messages.</div>
   </div>
+  </div><!-- /paneSender -->
+
+  <div id="paneExtractor" class="tabPane" hidden>
+    <div class="card"><h2>Group Contact Extractor</h2>
+      <div class="info" style="margin:0 0 8px">Open <b>web.whatsapp.com</b> in another Chrome tab and wait for your chats to load. Pick a group and export its members, or send them straight to the Bulk Sender.</div>
+      <button id="exLoadGroups" style="width:100%">1. Load my WhatsApp groups</button>
+      <label for="exGroupSelect">2. Select a group</label>
+      <input id="exGroupFilter" type="search" placeholder="Type to filter groups…" disabled>
+      <select id="exGroupSelect" disabled><option value="">Load groups first</option></select>
+      <button id="exScan" style="width:100%;margin-top:8px" disabled>3. Get members of selected group</button>
+      <div id="exStatus" role="status" aria-live="polite">Open web.whatsapp.com first.</div>
+      <div id="exDetails" hidden>
+        <div id="exGroupName"></div><div id="exCount"></div><div id="exPreview"></div>
+        <div class="btns"><button id="exCsv" disabled>Download CSV</button><button id="exXlsx" disabled>Download Excel</button></div>
+        <button id="exToSender" disabled>Use these contacts in Bulk Sender &rarr;</button>
+      </div>
+      <div class="info">Only group chats are listed. Everything runs locally in your browser; nothing is uploaded. WhatsApp may hide some members' numbers. Only message people who have agreed to receive your messages.</div>
+    </div>
+  </div>
 </div>
 <script src="shared.js"></script>
 <script src="app.js"></script>
+<script src="xlsx.full.min.js"></script>
+<script src="extractor.js"></script>
+<p style="text-align:center; font-size:11px; color:grey;">
+Developed by Chandresh Suvarna
+</p>
 </body></html>
